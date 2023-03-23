@@ -2,9 +2,13 @@ import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {FiShoppingCart} from "react-icons/fi";
 import { DataContext } from './DataProvider';
+import AuthContext from './auth-context';
 
 
 const Header = () => {
+  const authCtx = useContext(AuthContext)
+  const isLoggedIn = authCtx.isLoggedIn
+
   const value = useContext(DataContext)
   const [cart] = value.cart
   return (
@@ -14,10 +18,11 @@ const Header = () => {
         </div>
         <ul>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="/product">Product</Link></li>
+            {isLoggedIn && (<li><Link to="/product">Product</Link></li>)}
             <li><Link to="/about">About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/login">Login</Link></li>
+            {!isLoggedIn && (<li><Link to="/login">Login</Link></li>)}
+            {isLoggedIn && (<li><button>Logout</button></li>)}
 
         </ul>
         <div className='cart-icon'>
