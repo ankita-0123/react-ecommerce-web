@@ -7,7 +7,10 @@ import AuthContext from './auth-context';
 
 const Header = () => {
   const authCtx = useContext(AuthContext)
-  const isLoggedIn = authCtx.isLoggedIn
+  const isLoggedIn = authCtx.isLoggedIn;
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
 
   const value = useContext(DataContext)
   const [cart] = value.cart
@@ -22,7 +25,7 @@ const Header = () => {
             <li><Link to="/about">About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             {!isLoggedIn && (<li><Link to="/login">Login</Link></li>)}
-            {isLoggedIn && (<li><button>Logout</button></li>)}
+            {isLoggedIn && (<li><Link onClick={logoutHandler}>Logout</Link></li>)}
 
         </ul>
         <div className='cart-icon'>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Product from './components/Product';
@@ -9,7 +9,9 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import AuthPage from './components/AuthPage';
+import AuthContext from './components/auth-context';
 const App = () => {
+  const authCtx = useContext(AuthContext);
   return (
     <DataProvider>
     <div className='App'>
@@ -20,8 +22,8 @@ const App = () => {
           <Route path="home" element={<Home/>}/>
           <Route path="about" element={<About/>}/>
           <Route path="contact" element={<Contact/>}/>            
-          <Route path="product" element={<Product/>}/>
-          <Route path="login" element={<AuthPage/>}/>
+          {authCtx.isLoggedIn && (<Route path="product" element={<Product/>}/>)}
+          {!authCtx.isLoggedIn && (<Route path="login" element={<AuthPage/>}/>)}
           <Route path="products/:id" element={<Details/>}/>
           <Route path="cart" element={<Cart/>}/>
           
