@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
+import AuthPage from './components/AuthPage';
 const App = () => {
   return (
     <DataProvider>
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="about" element={<About/>}/>
           <Route path="contact" element={<Contact/>}/>            
           <Route path="product" element={<Product/>}/>
+          <Route path="login" element={<AuthPage/>}/>
           <Route path="products/:id" element={<Details/>}/>
           <Route path="cart" element={<Cart/>}/>
           
