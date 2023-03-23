@@ -19,14 +19,13 @@ const App = () => {
       <Header/> 
       <section>
         <Routes>
-          <Route path="home" element={<Home/>}/>
-          <Route path="about" element={<About/>}/>
-          <Route path="contact" element={<Contact/>}/>            
+          {authCtx.isLoggedIn && (<Route path="home" element={<Home/>}/>)}
+          {authCtx.isLoggedIn && (<Route path="about" element={<About/>}/>)}
+          {authCtx.isLoggedIn && (<Route path="contact" element={<Contact/>}/>)}            
           {authCtx.isLoggedIn && (<Route path="product" element={<Product/>}/>)}
           {!authCtx.isLoggedIn && (<Route path="login" element={<AuthPage/>}/>)}
           <Route path="products/:id" element={<Details/>}/>
-          <Route path="cart" element={<Cart/>}/>
-          
+          {authCtx.isLoggedIn &&(<Route path="cart" element={<Cart/>}/>)}
         </Routes>
       </section>
 
